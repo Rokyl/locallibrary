@@ -1,4 +1,6 @@
 from django.db import models
+
+
 class Genre(models.Model):
     """
     Model representing a book genre (e.g. Science Fiction, Non Fiction).
@@ -10,7 +12,10 @@ class Genre(models.Model):
         String for representing the Model object (in Admin site etc.)
         """
         return self.name
-from django.urls import reverse #Used to generate URLs by reversing the URL patterns
+
+
+from django.urls import reverse  # Used to generate URLs by reversing the URL patterns
+
 
 class Book(models.Model):
     """
@@ -21,10 +26,16 @@ class Book(models.Model):
     # Foreign Key used because book can only have one author, but authors can have multiple books
     # Author as a string rather than object because it hasn't been declared yet in the file.
     summary = models.TextField(max_length=1000, help_text="Enter a brief description of the book")
-    isbn = models.CharField('ISBN',max_length=13, help_text='13 Character <a href="https://www.isbn-international.org/content/what-isbn">ISBN number</a>')
+    isbn = models.CharField('ISBN', max_length=13,
+                            help_text='13 Character <a href="https://www.isbn-international.org/content/what-isbn">ISBN number</a>')
     genre = models.ManyToManyField(Genre, help_text="Select a genre for this book")
+
     # ManyToManyField used because genre can contain many books. Books can cover many genres.
     # Genre class has already been defined so we can specify the object above.
+    def display_genre(self):
+        return ' '.join([genre.name for genre in self.genre.all()[:3]])
+
+    display_genre.short_description = 'Genre'
 
     def __str__(self):
         """
@@ -32,16 +43,16 @@ class Book(models.Model):
         """
         return self.title
 
-
     def get_absolute_url(self):
-
         return reverse('book-detail', args=[str(self.id)])
 
-import uuid # Required for unique book instances
+
+import uuid  # Required for unique book instances
+
 
 class BookInstance(models.Model):
-
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="Unique ID for this particular book across whole library")
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4,
+                          help_text="Unique ID for this particular book across whole library")
     book = models.ForeignKey('Book', on_delete=models.SET_NULL, null=True)
     imprint = models.CharField(max_length=200)
     due_back = models.DateField(null=True, blank=True)
@@ -58,12 +69,13 @@ class BookInstance(models.Model):
     class Meta:
         ordering = ["due_back"]
 
-
     def __str__(self):
         """
         String for representing the Model object
         """
-        return '%s (%s)' % (self.id,self.book.title)
+        return '%s (%s)' % (self.id, self.book.title)
+
+
 class Author(models.Model):
     """
     Model representing an author.
@@ -78,7 +90,6 @@ class Author(models.Model):
         Returns the url to access a particular author instance.
         """
         return reverse('author-detail', args=[str(self.id)])
-
 
     def __str__(self):
         """
