@@ -32,7 +32,7 @@ class BookListView(generic.ListView):
     model = Book
     paginate_by = 10
     context_object_name = 'book_list'  # ваше собственное имя переменной контекста в шаблоне
-    queryset = Book.objects.all()  # Получение 5 книг, содержащих слово 'war' в заголовке
+    queryset = Book.objects.all()
     template_name = 'catalog/book_list.html'  # Определение имени вашего шаблона и его расположения
 
 
@@ -40,3 +40,14 @@ class BookDetailView(generic.DetailView):
     model = Book
 
 
+class AuthorListView(generic.ListView):
+    model = Author
+    paginate_by = 10
+    context_object_name = 'author_list'
+    queryset = Author.objects.all()
+    template_name = 'catalog/author_list.html'
+
+
+class AuthorDetailView(generic.DetailView):
+    model = Author
+    book = Book
