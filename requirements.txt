@@ -3,8 +3,7 @@ backports.entry-points-selectable==1.1.0
 brotlipy==0.7.0
 certifi==2021.5.30
 
-conda==4.10.3
-conda-package-handling @ file:///opt/concourse/worker/volumes/live/8fb3e065-760b-4a9d-4cd9-aca7fc8baf53/volume/conda-package-handling_1618262145611/work
+
 distlib==0.3.3
 dj-database-url==0.5.0
 Django==3.2.8
