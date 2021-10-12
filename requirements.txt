@@ -13,15 +13,9 @@ gunicorn==20.1.0
 platformdirs==2.4.0
 psycopg2==2.9.1
 pycosat==0.6.3
-pycparser @ file:///tmp/build/80754af9/pycparser_1594388511720/work
-pyOpenSSL @ file:///tmp/build/80754af9/pyopenssl_1608057966937/work
-PySocks @ file:///opt/concourse/worker/volumes/live/112288ac-9cb0-4e73-768b-13baf4ca6419/volume/pysocks_1605305820043/work
 pytz==2021.3
-requests @ file:///tmp/build/80754af9/requests_1608241421344/work
-ruamel-yaml-conda @ file:///opt/concourse/worker/volumes/live/e81cf0fe-611a-498e-6e69-a7320057c1ac/volume/ruamel_yaml_1616016689696/work
-six @ file:///tmp/build/80754af9/six_1623709665295/work
+
 sqlparse==0.4.2
-tqdm @ file:///tmp/build/80754af9/tqdm_1625563689033/work
-urllib3 @ file:///tmp/build/80754af9/urllib3_1625084269274/work
+
 virtualenv==20.8.1
 whitenoise==5.3.0
